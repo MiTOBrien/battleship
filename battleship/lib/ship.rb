@@ -4,7 +4,9 @@ class Ship
 
     attr_accessor :health,
                   :hit,
-                  :health
+                  :sunk
+                  
+                  
 
     def initialize(name, length)
         @name = name
@@ -13,15 +15,18 @@ class Ship
         @sunk = false
     end
 
-    def sunk?
-        @sunk
+   
+
+    def hit
+        @health -= 1
     end
 
-    # def hit
-
-    # end
-
-    # def health
-
-    # end
+    def sunk?
+        if health == 0
+            @sunk = true
+        else
+            @sunk = false
+            # we could edit this to be more concise maybe
+    end
+    end
 end

@@ -1,3 +1,4 @@
+require 'pry';binding.pry
 require './lib/ship'
 
 RSpec.describe Ship do
@@ -16,4 +17,14 @@ RSpec.describe Ship do
     it "Sunk? should be false to start the game" do
         expect(@cruiser.sunk?).to be(false)
     end
+
+    it "can be hit and sunk" do 
+        @submarine.hit
+        @submarine.hit
+        @cruiser.hit
+
+        expect(@submarine.sunk?).to be(true)
+        expect(@cruiser.health).to eq(2)
+    end
+
 end

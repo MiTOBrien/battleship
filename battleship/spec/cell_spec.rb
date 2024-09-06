@@ -45,8 +45,19 @@ RSpec.describe Cell do
         @cell_1.place_ship(@cruiser)
         @cell_2.place_ship(@submarine)
 
-        @cell_1.fire_upon
-        @cell_1.fire_upon
-        @cell_1.fire_upon
+        expect(@cell_1.render(true)).to eq("S")
 
+        @cell_1.fire_upon
+        @cell_1.fire_upon
+        @cell_1.fire_upon
+        expect(@cell_1.ship.health).to eq(0)
+
+        @cell_2.fire_upon
+
+        expect(@cell_1.render).to eq("X")
+        expect(@cell_2.render).to eq("H")
+
+    end
+
+       
 end

@@ -27,7 +27,7 @@ class Cell
 
     def fire_upon
         @fired_upon = true
-        if @empty == false
+        if (@empty == false) && (@ship.health >> 0)
         @ship.health -= 1
         end
 
@@ -40,14 +40,16 @@ class Cell
 
     #Good psuedocode logic!
     # Added the first condition to put the "." on cells that haven't been fired upon
-        def render
+        def render(ship_placed = false)
             
-            if @fired_upon && (@empty == false) && @sunk
+            if @fired_upon && (@empty == false) && (@ship.sunk? == true)
                  "X"
             elsif @fired_upon && (@empty == false)
                  "H"
             elsif @fired_upon && (@empty == true)
                  "M"
+            elsif ship_placed == true
+                 "S"
             else
                  "."
             end

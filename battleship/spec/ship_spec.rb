@@ -1,4 +1,4 @@
-require 'pry';binding.pry
+# require 'pry';binding.pry
 require './lib/ship'
 
 RSpec.describe Ship do

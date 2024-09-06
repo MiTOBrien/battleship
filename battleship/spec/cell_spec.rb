@@ -1,3 +1,4 @@
+#require 'pry';binding.pry
 require './lib/ship'
 require './lib/cell'
 
@@ -17,13 +18,16 @@ RSpec.describe Cell do
     it 'can place a ship' do
         @cell.place_ship(@cruiser)
         expect(@cell.empty?).to eq(false)
+        expect(@cell.ship).to eq(@cruiser)
     end
 
     it 'can verify if a cell has been fired upon' do
         expect(@cell.fired_upon?).to eq(false)
 
+        @cell.place_ship(@cruiser)
+
         @cell.fire_upon
         expect(@cell.fired_upon?).to eq(true)
-        # Need to add the test for the Cruiser being hit and its health decreasing to 2
+        expect(@cell.ship.health).to eq(2)
     end
 end

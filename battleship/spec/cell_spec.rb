@@ -13,4 +13,17 @@ RSpec.describe Cell do
         expect(@cell.ship).to eq(nil)
         expect(@cell.empty?).to eq(true)
     end
+
+    it 'can place a ship' do
+        @cell.place_ship(@cruiser)
+        expect(@cell.empty?).to eq(false)
+    end
+
+    it 'can verify if a cell has been fired upon' do
+        expect(@cell.fired_upon?).to eq(false)
+
+        @cell.fire_upon
+        expect(@cell.fired_upon?).to eq(true)
+        # Need to add the test for the Cruiser being hit and its health decreasing to 2
+    end
 end

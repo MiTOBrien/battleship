@@ -38,4 +38,15 @@ RSpec.describe Cell do
         @cell_1.fire_upon
         expect(@cell_1.render).to eq("M")
     end
+
+    it 'can render cells with ships' do
+        @submarine = Ship.new("Submarine", 2)
+       
+        @cell_1.place_ship(@cruiser)
+        @cell_2.place_ship(@submarine)
+
+        @cell_1.fire_upon
+        @cell_1.fire_upon
+        @cell_1.fire_upon
+
 end

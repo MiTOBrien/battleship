@@ -22,11 +22,6 @@ class Ship
     end
 
     def sunk?
-        if health == 0
-            @sunk = true
-        else
-            @sunk = false
-            # we could edit this to be more concise maybe
-    end
+        @health == 0
     end
 end

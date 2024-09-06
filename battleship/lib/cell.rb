@@ -35,4 +35,18 @@ class Cell
     # if ship not sunk yet then render H for hit
     # if cell fired upon, but cell.ship=nil then render "M"
     #else return . 
+
+    #Good psuedocode logic!
+    # Added the first condition to put the "." on cells that haven't been fired upon
+        def render
+            if @fired_upon && @empty
+                puts "."
+            elsif @fired_upon && @empty == false && @sunk
+                puts "X"
+            elsif @fired_upon && @empty == false
+                puts "H"
+            else @fired_upon && @empty
+                puts "M"
+            end
+        end
 end

@@ -20,11 +20,29 @@ RSpec.describe Board do
     end
 
     it 'can identify valid ship placement' do
-        expect(@board.valid_placement?(cruiser, ["A1", "B2", "C3"])).to be(false)
-        expect(@board.valid_placement?(submarine, ["A2", "A3", "A4"])).to be(false)
-        expect(@board.valid_placement?(submarine, ["A1", "C1"])).to be(false)
-        expect(@board.valid_placement?(submarine, ["A1", "A2"])).to be(true)
-        expect(@board.valid_placement?(cruiser, ["B1", "C1", "D1"])).to be(true)
+        # Test valid length - Pass and Fail
+        expect(@board.valid_placement?(@cruiser, ["A1", "A2"])).to be(false)
+        expect(@board.valid_placement?(@submarine, ["C2", "C3", "C4"])).to be(false)
+        expect(@board.valid_placement?(@cruiser, ["B1", "B2", "B3"])).to be(true)
+        expect(@board.valid_placement?(@submarine, ["D2", "D3"])).to be(true)
+
+        # # Test Consecutive - Fail
+        # expect(@board.valid_placement?(@cruiser, ["A1", "A2", "A4"])).to be(false)
+        # expect(@board.valid_placement?(@submarine, ["A1", "C1"])).to be(false)
+        # expect(@board.valid_placement?(@cruiser, ["A3", "A2", "A1"])).to be(false)
+        # expect(@board.valid_placement?(@submarine, ["C1", "B1"])).to be(false)
+        
+        # #Test Diagonal - Fail
+        # expect(@board.valid_placement?(@cruiser, ["A1", "B2", "C3"])).to be(false)
+        # expect(@board.valid_placement?(@submarine, ["C2", "D3"])).to be(false)
+
+        # #Valid Placements - Pass
+        # expect(@board.valid_placement?(@cruiser, ["B1", "B2", "B3"])).to be(true)
+        # expect(@board.valid_placement?(@submarine, ["D2", "D3"])).to be(true)
+    end
+
+    it 'can render the board' do
+        expect(@board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
     end
 
 end

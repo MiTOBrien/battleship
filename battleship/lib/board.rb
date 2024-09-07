@@ -55,7 +55,7 @@ class Board
             valid_coordinate?(coordinate) == true}
         return false unless (consecutive_letters?(coordinates)) || (consecutive_numbers?(coordinates)) == true
 
-        
+        true
     end
 
     private
@@ -82,7 +82,7 @@ class Board
         return false unless letters.uniq.size == 1
 
         
-        letter_ords.each_cons(2).all? { |num1, num2| num2 == num1.next }
+        numbers.each_cons(2).all? { |num1, num2| num2 == num1.next }
     end
     
        

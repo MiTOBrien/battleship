@@ -13,8 +13,8 @@ RSpec.describe Board do
     end
 
     it 'can identify valid coordinates' do
-        expect(@board.valid_coordinate?(['B1'])).to be(true)
-        expect(@board.valid_coordinate?(["d4"])).to be(true)
+        expect(@board.valid_coordinate?(['B1', "c1", "D1"])).to be(true)
+        expect(@board.valid_coordinate?(["D1", "d2", "d3"])).to be(true)
         expect(@board.valid_coordinate?(["A3", "E1", "D2"])).to eq("Those are invalid coordinates. Please try again:")
         expect(@board.valid_coordinate?(["4A"])).to eq("Those are invalid coordinates. Please try again:")
     end

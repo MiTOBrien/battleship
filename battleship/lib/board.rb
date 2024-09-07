@@ -5,7 +5,7 @@ class Board
     end
 
     def cells
-        cells = {
+        @cells = {
         "A1" => Cell.new("A1"),
         "A2" => Cell.new("A2"),
         "A3" => Cell.new("A3"),
@@ -35,7 +35,7 @@ class Board
         end
     end
 
-    def valid_placement(ship, coordinates)
+    def valid_placement?(ship, coordinates)
         #use .first and .last?
         if ship.length == coordinates.length
             true
@@ -54,5 +54,9 @@ class Board
 #if (coordinates index 1 or last, .first(referring to the letter part) is equal to 
 #coordinates (first index number minus 1) . next, then valid placement true
 #(thats only half of it because we need to do it for the number part)
+    end
+
+    def render
+        game_board = "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
     end
 end

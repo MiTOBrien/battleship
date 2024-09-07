@@ -13,10 +13,10 @@ RSpec.describe Board do
     end
 
     it 'can identify valid coordinates' do
-        expect(@board.valid_coordinate?("E1")).to be(false)
-        expect(@board.valid_coordinate?("A16")).to be(false)
-        expect(@board.valid_coordinate?("B1")).to be(true)
-        expect(@board.valid_coordinate?("D4")).to be(true)
+        expect(@board.valid_coordinate?(["E1"])).to eq("Those are invalid coordinates. Please try again:")
+        expect(@board.valid_coordinate?(["A16"])).to eq("Those are invalid coordinates. Please try again:")
+        expect(@board.valid_coordinate?(["B1"])).to be(true)
+        expect(@board.valid_coordinate?(["D4"])).to be(true)
     end
 
     it 'can identify valid ship placement' do

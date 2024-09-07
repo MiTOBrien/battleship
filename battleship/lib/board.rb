@@ -25,12 +25,15 @@ class Board
     }
     end
 
+    def place (ship, coords)
+
+
     def valid_coordinate?(coordinate)
         cell_array = ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 
         'B3', 'B4', 'C1', 'C2', 'C3', 'C4', 'D1', 'D2', 'D3', 'D4']
         coordinate.each do |coord|
             unless cell_array.include?(coord)
-                puts "Those are invalid coordinates. Please try again:"
+                # puts "Those are invalid coordinates. Please try again:"
                 return "Those are invalid coordinates. Please try again:"
             else
                 return true
@@ -62,4 +65,6 @@ class Board
     def render
         game_board = "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
     end
+    #this method needs to be changed so we can refer to certain spots on the board and change them
+    #but i do not know how we would do that
 end

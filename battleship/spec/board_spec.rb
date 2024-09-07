@@ -9,5 +9,6 @@ RSpec.describe Board do
 
     it 'exists' do
         expect(@board).to be_an_instance_of(Board)
+        expect(@board.cells).to eq({})
     end
 end

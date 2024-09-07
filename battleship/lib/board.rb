@@ -25,14 +25,14 @@ class Board
     }
     end
 
-    def place (ship, coords)
+    # def place (ship, coords)
 
 
     def valid_coordinate?(coordinate)
         cell_array = ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 
         'B3', 'B4', 'C1', 'C2', 'C3', 'C4', 'D1', 'D2', 'D3', 'D4']
-play_game
-        if (cell_array & coordinate) == coordinate
+        #play_game
+        if cell_array.include?(coordinate)
             return true
         else
             puts "Those are invalid coordinates. Please try again:"
@@ -42,30 +42,55 @@ play_game
         end
     end
 
-    def valid_placement?(ship, coordinates)
-        #use .first and .last?
-        if ship.length == coordinates.length
-            true
-        else
-            false
-        end
-
-
-#helper method for ship placement being good or not
-        #use ordinals maybe
-
-#is there a method for seeing if a character or number has 
-#other character or number next to it chronologically
-
-
-#if (coordinates index 1 or last, .first(referring to the letter part) is equal to 
-#coordinates (first index number minus 1) . next, then valid placement true
-#(thats only half of it because we need to do it for the number part)
-    end
 
     def render
         game_board = "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
     end
     #this method needs to be changed so we can refer to certain spots on the board and change them
     #but i do not know how we would do that
+
+    def valid_placement?(ship, coordinates)
+        return false unless valid_length?(ship,coordinates)
+        return false unless coordinates.each { |coordinate|
+            valid_coordinate?(coordinate) == true}
+        return false unless (consecutive_letters?(coordinates)) || (consecutive_numbers?(coordinates)) == true
+
+        
+    end
+
+    private
+
+    def valid_length?(ship, coordinates)
+         
+       coordinates.size == ship.length
+    end
+
+    def consecutive_letters?(coordinates)
+        letters = coordinates.map { |coord| coord[0] }
+        numbers = coordinates.map { |coord| coord[1].to_i }
+
+        return false unless numbers.uniq.size == 1
+#number of uniq values for the number is 1 so all numbers have to be the same if we are doing vertical
+        letter_ords = letters.map { |letter| letter.ord }
+        letter_ords.each_cons(2).all? { |let1, let2| let2 == let1.next }
+    end
+   
+    def consecutive_numbers?(coordinates)
+        letters = coordinates.map { |coord| coord[0] }
+        numbers = coordinates.map { |coord| coord[1].to_i }
+
+        return false unless letters.uniq.size == 1
+
+        
+        letter_ords.each_cons(2).all? { |num1, num2| num2 == num1.next }
+    end
+    
+       
+
+
+
+#
+    
+
+   
 end

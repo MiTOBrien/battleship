@@ -29,10 +29,10 @@ class Board
 
 
     def valid_coordinate?(coordinate)
-        cell_array = ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 
-        'B3', 'B4', 'C1', 'C2', 'C3', 'C4', 'D1', 'D2', 'D3', 'D4']
-        #play_game
-        if cell_array.include?(coordinate)
+        cell_array = ['a1', 'a2', 'a3', 'a4', 'b1', 'b2', 
+        'b3', 'b4', 'c1', 'c2', 'c3', 'c4', 'd1', 'd2', 'd3', 'd4']
+        coordinate.map!(&:downcase)
+        if (cell_array & coordinate) == coordinate
             return true
         else
             puts "Those are invalid coordinates. Please try again:"

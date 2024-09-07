@@ -28,10 +28,13 @@ class Board
     def valid_coordinate?(coordinate)
         cell_array = ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 
         'B3', 'B4', 'C1', 'C2', 'C3', 'C4', 'D1', 'D2', 'D3', 'D4']
-        if cell_array.include?(coordinate)
-            true
-        else 
-            false
+        coordinate.each do |coord|
+            unless cell_array.include?(coord)
+                puts "Those are invalid coordinates. Please try again:"
+                return "Those are invalid coordinates. Please try again:"
+            else
+                return true
+            end
         end
     end
 

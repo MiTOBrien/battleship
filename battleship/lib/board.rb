@@ -1,7 +1,10 @@
 class Board
-    attr_accessor :cells
+    attr_accessor :cells,
+                  :coordinate
+    
     def initialize
         @cells = cells
+        @coordinate
     end
 
     def cells
@@ -36,33 +39,25 @@ class Board
             return true
         else
             puts "Those are invalid coordinates. Please try again:"
-            return "Those are invalid coordinates. Please try again:"
-
-     
+            return "Those are invalid coordinates. Please try again:"     
         end
     end
 
 
     def render
-        # game_board = "  1 2 3 4 \nA %{A1} %{A2} %{A3} %{A4} \nB %{B1} %{B2} %{B3} %{B4} \nC %{C1} %{C2} %{C3} %{C4} \nD %{D1} %{D2} %{D3} %{D4} \n" % @cells
-        game_board = "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
+        game_board = "  1 2 3 4 \nA #{@cells["A1"].coordinate} #{@cells["A2"].coordinate} #{@cells["A3"].coordinate} #{@cells["A4"].coordinate} \nB #{@cells["B1"].coordinate} #{@cells["B2"].coordinate} #{@cells["B3"].coordinate} #{@cells["B4"].coordinate} \nC #{@cells["C1"].coordinate} #{@cells["C2"].coordinate} #{@cells["C3"].coordinate} #{@cells["C4"].coordinate} \nD #{@cells["D1"].coordinate} #{@cells["D2"].coordinate} #{@cells["D3"].coordinate} #{@cells["D4"].coordinate} \n"
     end
-    #this method needs to be changed so we can refer to certain spots on the board and change them
-    #but i do not know how we would do that
 
     def valid_placement?(ship, coordinates)
-        return false unless valid_length?(ship,coordinates)
+        return false unless valid_length?(ship, coordinates)
         return false unless coordinates.each { |coordinate|
-            valid_coordinate?(coordinate) == true}
+        valid_coordinate?(coordinate) == true}
         return false unless (consecutive_letters?(coordinates)) || (consecutive_numbers?(coordinates)) == true
-
-        true
     end
 
     private
 
-    def valid_length?(ship, coordinates)
-         
+    def valid_length?(ship, coordinates) 
        coordinates.size == ship.length
     end
 
@@ -71,7 +66,7 @@ class Board
         numbers = coordinates.map { |coord| coord[1].to_i }
 
         return false unless numbers.uniq.size == 1
-#number of uniq values for the number is 1 so all numbers have to be the same if we are doing vertical
+        #number of uniq values for the number is 1 so all numbers have to be the same if we are doing vertical
         letter_ords = letters.map { |letter| letter.ord }
         letter_ords.each_cons(2).all? { |let1, let2| let2 == let1.next }
     end
@@ -82,16 +77,6 @@ class Board
 
         return false unless letters.uniq.size == 1
 
-        
         numbers.each_cons(2).all? { |num1, num2| num2 == num1.next }
     end
-    
-       
-
-
-
-#
-    
-
-   
 end

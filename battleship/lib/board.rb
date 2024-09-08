@@ -52,8 +52,7 @@ class Board
 
     def valid_placement?(ship, coordinates)
         return false unless valid_length?(ship,coordinates)
-        return false unless coordinates.each { |coordinate|
-            valid_coordinate?(coordinate) == true}
+         valid_coordinate?(coordinates)
         return false unless (consecutive_letters?(coordinates)) || (consecutive_numbers?(coordinates)) == true
 
         true

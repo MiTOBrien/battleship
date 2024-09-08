@@ -1,6 +1,7 @@
 class Board
-    attr_accessor :cells,
-                  :coordinate
+    attr_reader :cells
+    # attr_accessor :cells,
+    #               :coordinate
     
     def initialize
         @cells = cells
@@ -28,9 +29,12 @@ class Board
     }
     end
 
-    # def place (ship, coords )
-    #place updates the rendering of the board
-    #render renders all the cells from hash
+    def place (ship, coordinates)
+        coordinates.each do |coordinate|
+            @cells[coordinate].coordinate = "S"
+        end
+    end
+    
 
     def valid_coordinate?(coordinate)
         cell_array = ['a1', 'a2', 'a3', 'a4', 'b1', 'b2', 

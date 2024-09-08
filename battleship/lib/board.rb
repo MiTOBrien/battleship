@@ -46,14 +46,12 @@ class Board
 
     def render(show_ship = false)
         game_board = "  1 2 3 4 \nA #{@cells["A1"].coordinate} #{@cells["A2"].coordinate} #{@cells["A3"].coordinate} #{@cells["A4"].coordinate} \nB #{@cells["B1"].coordinate} #{@cells["B2"].coordinate} #{@cells["B3"].coordinate} #{@cells["B4"].coordinate} \nC #{@cells["C1"].coordinate} #{@cells["C2"].coordinate} #{@cells["C3"].coordinate} #{@cells["C4"].coordinate} \nD #{@cells["D1"].coordinate} #{@cells["D2"].coordinate} #{@cells["D3"].coordinate} #{@cells["D4"].coordinate} \n"
-        main
     end
 
     def valid_placement?(ship, coordinates)
       return false unless valid_length?(ship, coordinates)
-      valid_coordinate?(coordinates)
-      main
       return false unless (consecutive_letters?(coordinates)) || (consecutive_numbers?(coordinates)) == true
+      valid_coordinate?(coordinates)
     end
 
     private

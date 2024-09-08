@@ -24,14 +24,12 @@ class Play
         puts "Enter the 3 squares for your Cruiser in this format A1 B1 C1."
         @p_cruiser_coord = gets.chomp
         @p_cruiser_arr = @p_cruiser_coord.split(" ")
-        @board.valid_coordinate?(@p_cruiser_arr)
         @board.valid_placement?(@player_cruiser,@p_cruiser_arr)
         puts @board.render
         puts "Enter the 2 squares for your Submarine in this format D2 D3."
         @p_submarine_coord = gets.chomp
         @p_submarine_arr = @p_submarine_coord.split(" ")
-        puts @board.render
-        @board.valid_coordinate?(@p_submarine_arr)
         @board.valid_placement?(@player_submarine, @p_submarine_arr)
+        puts @board.render
     end
 end

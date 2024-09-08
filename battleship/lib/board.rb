@@ -25,8 +25,9 @@ class Board
     }
     end
 
-    # def place (ship, coords)
-
+    # def place (ship, coords )
+    #place updates the rendering of the board
+    #render renders all the cells from hash
 
     def valid_coordinate?(coordinate)
         cell_array = ['a1', 'a2', 'a3', 'a4', 'b1', 'b2', 
@@ -43,7 +44,7 @@ class Board
     end
 
 
-    def render
+    def render(show_ship = false)
         # game_board = "  1 2 3 4 \nA %{A1} %{A2} %{A3} %{A4} \nB %{B1} %{B2} %{B3} %{B4} \nC %{C1} %{C2} %{C3} %{C4} \nD %{D1} %{D2} %{D3} %{D4} \n" % @cells
         game_board = "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
     end

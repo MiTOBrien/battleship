@@ -19,7 +19,7 @@ RSpec.describe Board do
         expect(@board.valid_coordinate?(["4A"])).to eq("Those are invalid coordinates. Please try again:")
     end
 
-    xit 'can identify valid ship placement' do
+    it 'can identify valid ship placement' do
         # Test valid length - Pass and Fail
         expect(@board.valid_placement?(@cruiser, ["A1", "A2"])).to be(false)
         expect(@board.valid_placement?(@submarine, ["C2", "C3", "C4"])).to be(false)

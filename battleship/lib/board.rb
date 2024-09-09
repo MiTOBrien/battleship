@@ -1,6 +1,5 @@
 class Board
-    attr_accessor :cells,
-                  :coordinate
+    attr_reader :cells
     
     def initialize
         @cells = cells
@@ -28,10 +27,12 @@ class Board
     }
     end
 
-    # def place (ship, coords )
-    #place updates the rendering of the board
-    #render renders all the cells from hash
-
+    def place (ship, coordinates)
+        coordinates.each do |coordinate|
+            @cells[coordinate].coordinate = "S"
+        end
+    end
+    
     def valid_coordinate?(coordinate)
         cell_array = ['a1', 'a2', 'a3', 'a4', 'b1', 'b2', 
         'b3', 'b4', 'c1', 'c2', 'c3', 'c4', 'd1', 'd2', 'd3', 'd4']
@@ -53,8 +54,6 @@ class Board
       return false unless (consecutive_letters?(coordinates)) || (consecutive_numbers?(coordinates)) == true
       valid_coordinate?(coordinates)
     end
-
-    private
 
     def valid_length?(ship, coordinates) 
        coordinates.size == ship.length

@@ -1,9 +1,15 @@
 class Cell
-    attr_accessor :ship,
-                  :empty,
-                  :fired_upon,
-                  :ship,
-                  :coordinate
+    attr_reader :ship,
+                :empty,
+                :fired_upon,
+                :cells,
+                :coordinate
+
+    attr_writer :ship,
+                :empty,
+                :fired_upon,
+                :cells,
+                :coordinate
 
     def initialize(coordinate)
         @coordinate = coordinate

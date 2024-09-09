@@ -10,6 +10,7 @@ RSpec.describe Board do
     it 'exists' do
         expect(@board).to be_an_instance_of(Board)
         expect(@board.cells).to be_a(Hash)
+        expect(@board.cells.empty?).to eq(false)
     end
 
     it 'can identify valid coordinates' do
@@ -43,14 +44,12 @@ RSpec.describe Board do
 
     it 'can render the board' do
         expect(@board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
-   
+
     end
 
-    xit 'can render board with interactions' do
+    it 'can place ships on the board with interactions' do
         @board.place(@cruiser, ["A1", "A2", "A3"])    
 
         expect(@board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
-   
     end
-
 end

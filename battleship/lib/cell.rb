@@ -47,7 +47,7 @@ class Cell
             "H"
         elsif @fired_upon && (@empty == true)
             "M"
-        elsif ship_placed == true
+        elsif (ship_placed == true) && (@empty == false)
             "S"
         else
             "."

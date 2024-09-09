@@ -8,7 +8,7 @@ class Board
 
     def cells
         @cells = {
-        "A1" => Cell.new("."),
+        "A1" => Cell.new("A1"),
         "A2" => Cell.new("."),
         "A3" => Cell.new("."),
         "A4" => Cell.new("."),
@@ -23,13 +23,16 @@ class Board
         "D1" => Cell.new("."),
         "D2" => Cell.new("."),
         "D3" => Cell.new("."),
-        "D4" => Cell.new(".")
+        "D4" => Cell.new("D4")
+        #change these to coord values instead of dot maybe?
     }
     end
 
     def place (ship, coordinates)
         coordinates.each do |coordinate|
-            @cells[coordinate].coordinate = "S"
+           
+            @cells[coordinate].place_ship(ship)
+           
         end
     end
     
@@ -46,8 +49,12 @@ class Board
     end
 
     def render(show_ship = false)
-        game_board = "  1 2 3 4 \nA #{@cells["A1"].coordinate} #{@cells["A2"].coordinate} #{@cells["A3"].coordinate} #{@cells["A4"].coordinate} \nB #{@cells["B1"].coordinate} #{@cells["B2"].coordinate} #{@cells["B3"].coordinate} #{@cells["B4"].coordinate} \nC #{@cells["C1"].coordinate} #{@cells["C2"].coordinate} #{@cells["C3"].coordinate} #{@cells["C4"].coordinate} \nD #{@cells["D1"].coordinate} #{@cells["D2"].coordinate} #{@cells["D3"].coordinate} #{@cells["D4"].coordinate} \n"
-    end
+        if (show_ship == true) 
+         game_board = "  1 2 3 4 \nA #{@cells["A1"].render(true)} #{@cells["A2"].render(true)} #{@cells["A3"].render(true)} #{@cells["A4"].render(true)} \nB #{@cells["B1"].render(true)} #{@cells["B2"].render(true)} #{@cells["B3"].render(true)} #{@cells["B4"].render(true)} \nC #{@cells["C1"].render(true)} #{@cells["C2"].render(true)} #{@cells["C3"].render(true)} #{@cells["C4"].render(true)} \nD #{@cells["D1"].render(true)} #{@cells["D2"].render(true)} #{@cells["D3"].render(true)} #{@cells["D4"].render(true)} \n"   
+        else
+         game_board = "  1 2 3 4 \nA #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render} \nB #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render} \nC #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render} \nD #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render} \n"
+        end
+    end #this means if show ship is true, it renders all the cells with the ship placed argument as true, and shows cells that are not empty (have a ship in them) as "S"
 
     def valid_placement?(ship, coordinates)
       return false unless valid_length?(ship, coordinates)

@@ -30,7 +30,11 @@ class Board
 
     def place (ship, coordinates)
         coordinates.each do |coordinate|
-            @cells[coordinate].place_ship(ship)
+            if @cells[coordinate].empty?
+                @cells[coordinate].place_ship(ship)
+            else 
+                return  "Spot Occupied"
+            end
         end
     end
     

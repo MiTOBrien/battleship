@@ -51,6 +51,10 @@ RSpec.describe Board do
         @board.place(@cruiser, ["A1", "A2", "A3"])    
 
         expect(@board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
+       
+        expect(@board.place(@submarine, ["A1", "B1"])).to eq "Spot Occupied"
     end
+
+
     #test for shooting at coords on the board
 end

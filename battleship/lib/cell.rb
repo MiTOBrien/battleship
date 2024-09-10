@@ -1,11 +1,11 @@
 class Cell
-    attr_reader :ship,
-                :empty,
-                :fired_upon,
-                :cells,
-                :coordinate
+    # attr_reader :ship,
+    #             :empty,
+    #             :fired_upon,
+    #             :cells,
+    #             :coordinate
 
-    attr_writer :ship,
+    attr_accessor :ship,
                 :empty,
                 :fired_upon,
                 :cells,

@@ -25,11 +25,15 @@ class Play
         @p_cruiser_coord = gets.chomp
         @p_cruiser_arr = @p_cruiser_coord.split(" ")
         @board.valid_placement?(@player_cruiser,@p_cruiser_arr)
-        puts @board.render
+        @p_cruiser_arr.map!(&:upcase)
+        @board.place(@player_cruiser, @p_cruiser_arr)
+        puts @board.render(true)
         puts "Enter the 2 squares for your Submarine in this format D2 D3."
         @p_submarine_coord = gets.chomp
         @p_submarine_arr = @p_submarine_coord.split(" ")
         @board.valid_placement?(@player_submarine, @p_submarine_arr)
-        puts @board.render
+        @p_submarine_arr.map!(&:upcase)
+        @board.place(@player_submarine, @p_submarine_arr)
+        puts @board.render(true)
     end
 end

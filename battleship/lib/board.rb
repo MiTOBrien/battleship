@@ -1,5 +1,5 @@
 class Board
-    attr_reader :cells
+    attr_accessor :cells
     
     def initialize
         @cells = cells
@@ -30,7 +30,7 @@ class Board
 
     def place (ship, coordinates)
         coordinates.each do |coordinate|
-            if @cells[coordinate].empty?
+            if @cells[coordinate].empty
                 @cells[coordinate].place_ship(ship)
             else 
                 return  "Spot Occupied"

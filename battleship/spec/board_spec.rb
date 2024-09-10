@@ -50,6 +50,8 @@ RSpec.describe Board do
     it 'can place ships on the board with interactions' do
         @board.place(@cruiser, ["A1", "A2", "A3"])    
 
+        expect(@board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
+
         expect(@board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
        
         expect(@board.place(@submarine, ["A1", "B1"])).to eq "Spot Occupied"
@@ -57,4 +59,23 @@ RSpec.describe Board do
 
 
     #test for shooting at coords on the board
+    it 'can render hit missed and sunk ships' do
+        @board.place(@cruiser, ["B1", "B2", "B3"])    
+        @board.place(@submarine, ["C4", "D4"])
+        
+        #@board.cells["A1"].fire_upon
+        # binding.pry
+       # expect(@board.render).to eq("  1 2 3 4 \nA M . . . \nB . . . . \nC . . . . \nD . . . . \n")
+        
+        @board.cells["C4"].fire_upon
+       
+        expect(@board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . H \nD . . . . \n")
+       
+         #@board.cells["D4"].fire_upon
+        # expect(@board.render).to eq("  1 2 3 4 \nA M . . . \nB . . . . \nC . . . X \nD . . . X \n")
+        
+         #@board.cells["B2"].fire_upon
+         #expect(@board.render).to eq("  1 2 3 4 \nA M . . . \nB . H . . \nC . . . X \nD . . . X \n")
+     end
+
 end

@@ -63,19 +63,13 @@ RSpec.describe Board do
         @board.place(@cruiser, ["B1", "B2", "B3"])    
         @board.place(@submarine, ["C4", "D4"])
         
-        #@board.cells["A1"].fire_upon
-        # binding.pry
-       # expect(@board.render).to eq("  1 2 3 4 \nA M . . . \nB . . . . \nC . . . . \nD . . . . \n")
-        
+        @board.cells["A1"].fire_upon
         @board.cells["C4"].fire_upon
-       
-        expect(@board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . H \nD . . . . \n")
-       
-         #@board.cells["D4"].fire_upon
-        # expect(@board.render).to eq("  1 2 3 4 \nA M . . . \nB . . . . \nC . . . X \nD . . . X \n")
+        @board.cells["D4"].fire_upon
+        @board.cells["B2"].fire_upon
         
-         #@board.cells["B2"].fire_upon
-         #expect(@board.render).to eq("  1 2 3 4 \nA M . . . \nB . H . . \nC . . . X \nD . . . X \n")
+        
+        expect(@board.render).to eq("  1 2 3 4 \nA M . . . \nB . H . . \nC . . . X \nD . . . X \n")
      end
 
 end

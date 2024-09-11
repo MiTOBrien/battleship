@@ -52,7 +52,7 @@ class Play
         end
         puts @player_board.render(true)
         take_turns = Turns.new
-        take_turns.computer_place_ships
+        take_turns.computer_place_ships()
     end
 
     def valid?(ship, coords)

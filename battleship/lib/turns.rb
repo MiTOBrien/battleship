@@ -3,13 +3,14 @@ class Turns
                  :computer_submarine,
                  :computer_cruiser_arr,
                  :computer_submarine_arr,
-                 :computer_board
+                  :computer_board
 
 
     attr_writer :computer_cruiser,
                 :computer_submarine,
                 :computer_cruiser_arr,
-                :computer_submarine_arr
+                :computer_submarine_arr,
+                 :computer_board
 
     def initialize
         @computer_board = Board.new
@@ -17,16 +18,35 @@ class Turns
         @computer_submarine = Ship.new("Submarine", 2)
         @computer_cruiser_coord = ""
         @computer_submarine_coord = ""
-        @computer_cruiser_arr = [1,2,3]
-        @computer_submarine_arr = [1,2]
+        @computer_cruiser_arr = []
+        @computer_submarine_arr = []
     end
 
     def computer_place_ships(computer_cruiser, computer_submarine)
         # Randomly generate coords for cruiser
-        cell_array = ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 
-        'B3', 'B4', 'C1', 'C2', 'C3', 'C4', 'D1', 'D2', 'D3', 'D4']
-        #new idea make an array of different arrays, each one has a coordinate set that works(there are 16 for cruiser)
-        #then jsut pick one at random. same for sub except more combos...
+        correct_array_cruiser = [['A1', 'A2', 'A3'],
+        ['A2', 'A3', 'A4'],
+        ['B1', 'B2', 'B3'],
+        ['B2', 'B3', 'B4'],
+        ['C1', 'C2', 'C3'],
+        ['C2', 'C3', 'C4'],
+        ['D1', 'D2', 'D3'],
+        ['D2', 'D3', 'D4'],
+        ['A1', 'B1', 'C1'],
+        ['B1', 'C1', 'D1'],
+        ['A2', 'B2', 'C2'],
+        ['B2', 'C2', 'D2'],
+        ['A3', 'B3', 'C3'],
+        ['B3', 'C3', 'D3'],
+        ['A4', 'B4', 'C4'],
+        ['B4', 'C4', 'D4']]
+         correct_array_sub = [['A1', 'A2'], ['A2', 'A3'], ['A3', 'A4'], ['B1', 'B2'], ['B2', 'B3'], ['B3', 'B4'], ['C1', 'C2'], ['C2', 'C3'], ['C3', 'C4'], ['D1', 'D2'], ['D2', 'D3'], ['D3', 'D4'], ['A1', 'B1'], ['A2', 'B2'], ['A3', 'B3'], ['A4', 'B4'], ['B1', 'C1'], ['B2', 'C2'], ['B3', 'C3'], ['B4', 'C4'], ['C1', 'D1'], ['C2', 'D2'], ['C3', 'D3'], ['C4', 'D4']]
+
+         @computer_cruiser_arr.concat(correct_array_cruiser.sample)
+         @computer_submarine_arr.concat(correct_array_sub.sample)
+        
+         @computer_board.place(@computer_cruiser, @computer_cruiser_arr)
+         @computer_board.place(@computer_submarine, @computer_submarine_arr)
         # Start computer turn 
 
     end

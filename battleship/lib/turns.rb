@@ -27,8 +27,10 @@ class Turns
         # Randomly take shot and display result
         puts "My shot on #{computer_shot} was a hit (or miss)"
         # Display computer board
+        puts "==========COMPUTER BOARD=========="
         @computer_board.render
         # Display player board
+        puts "==========PLAYER BOARD=========="
         @player_board.render
         # Check if game is over (Both ships are sunk)
         # Go to game_over methor or start player_turn method
@@ -44,8 +46,10 @@ class Turns
         # Display result
         puts "Your shot on #{player_shot} was a hit (or miss)"
         # Display computer board
+        puts "==========COMPUTER BOARD=========="
         @computer_board.render
         # Display plaer board
+        puts "==========PLAYER BOARD=========="
         @player_board.render
         # Check if games is over (Both ships are sunk)
         # Go to game_over method or start computer_turn method

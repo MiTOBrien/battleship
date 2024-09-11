@@ -22,7 +22,7 @@ class Turns
         @computer_submarine_arr = []
     end
 
-    def computer_place_ships(computer_cruiser, computer_submarine)
+    def computer_place_ships
         # Randomly generate coords for cruiser
         correct_array_cruiser = [['A1', 'A2', 'A3'],
         ['A2', 'A3', 'A4'],
@@ -47,8 +47,7 @@ class Turns
         
          @computer_board.place(@computer_cruiser, @computer_cruiser_arr)
          @computer_board.place(@computer_submarine, @computer_submarine_arr)
-        # Start computer turn 
-
+         computer_turn
     end
 
     def computer_turn

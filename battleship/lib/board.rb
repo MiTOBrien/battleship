@@ -24,6 +24,7 @@ class Board
         # @coordinate
     end
 
+
     def place (ship, coordinates)
         coordinates.each do |coordinate|
             if @cells[coordinate].empty?

@@ -1,9 +1,15 @@
 class Turns
     attr_reader :computer_cruiser,
-                 :computer_submarine
+                 :computer_submarine,
+                 :computer_cruiser_arr,
+                 :computer_submarine_arr,
+                 :computer_board
 
-    attr_writer :computer_cruiser
-                :computer_submarine
+
+    attr_writer :computer_cruiser,
+                :computer_submarine,
+                :computer_cruiser_arr,
+                :computer_submarine_arr
 
     def initialize
         @computer_board = Board.new
@@ -11,16 +17,18 @@ class Turns
         @computer_submarine = Ship.new("Submarine", 2)
         @computer_cruiser_coord = ""
         @computer_submarine_coord = ""
-        @computer_cruiser_arr = []
-        @computer_submarine_arr = []
+        @computer_cruiser_arr = [1,2,3]
+        @computer_submarine_arr = [1,2]
     end
 
     def computer_place_ships(computer_cruiser, computer_submarine)
         # Randomly generate coords for cruiser
-        # Place cruiser
-        # Randomly generate coords for submarine
-        # Place submarine
+        cell_array = ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 
+        'B3', 'B4', 'C1', 'C2', 'C3', 'C4', 'D1', 'D2', 'D3', 'D4']
+        #new idea make an array of different arrays, each one has a coordinate set that works(there are 16 for cruiser)
+        #then jsut pick one at random. same for sub except more combos...
         # Start computer turn 
+
     end
 
     def computer_turn

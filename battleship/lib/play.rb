@@ -62,4 +62,15 @@ class Play
             @p_cruiser_arr = @p_cruiser_coord.split(" ")
         end
     end
+
+    def game_over
+        puts "Would you like to play again?  (y/n)?"
+        play_again = gets.chomp.downcase
+        if play_again == "y" || play_again == "Y"
+            Play.new.start
+        else
+            puts "Great game!  Hope we can play again soon."
+            exit
+        end
+    end
 end

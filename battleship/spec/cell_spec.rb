@@ -54,8 +54,5 @@ RSpec.describe Cell do
 
         expect(@cell_1.render).to eq("X")
         expect(@cell_2.render).to eq("H")
-
     end
-
-       
 end

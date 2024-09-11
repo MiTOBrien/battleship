@@ -25,5 +25,4 @@ RSpec.describe Ship do
         expect(@submarine.sunk?).to be(true)
         expect(@cruiser.health).to eq(2)
     end
-
 end

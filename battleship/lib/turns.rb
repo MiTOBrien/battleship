@@ -20,6 +20,14 @@ class Turns
         @computer_submarine_coord = ""
         @computer_cruiser_arr = []
         @computer_submarine_arr = []
+
+        @player_board = Board.new
+        @p_cruiser_coord = ""
+        @p_submarine_coord = ""
+        @p_cruiser_arr = []
+        @p_submarine_arr = []
+        @player_cruiser = Ship.new("Cruiser", 3)
+        @player_submarine = Ship.new("Submarine", 2)
     end
 
     def computer_place_ships
@@ -52,13 +60,13 @@ class Turns
 
     def computer_turn
         # Randomly take shot and display result
-        puts "My shot on #{computer_shot} was a hit (or miss)"
+        # puts "My shot on #{computer_shot} was a hit (or miss)"
         # Display computer board
         puts "==========COMPUTER BOARD=========="
-        @computer_board.render
+        puts @computer_board.render
         # Display player board
         puts "==========PLAYER BOARD=========="
-        @player_board.render
+        puts @player_board.render(true)
         # Check if game is over (Both ships are sunk)
         # Go to game_over methor or start player_turn method
     end
@@ -74,16 +82,79 @@ class Turns
         puts "Your shot on #{player_shot} was a hit (or miss)"
         # Display computer board
         puts "==========COMPUTER BOARD=========="
-        @computer_board.render
+        puts @computer_board.render
         # Display plaer board
         puts "==========PLAYER BOARD=========="
-        @player_board.render
+        puts @player_board.render(true)
         # Check if games is over (Both ships are sunk)
         # Go to game_over method or start computer_turn method
     end
 
+    def ships_sunk?
+        # check if ships are sunk to end game?
+    end
+
+    def ask_user_to_play
+        puts "Welcome to Battleship!"
+        puts "Enter p to play or any other key to quit:"
+        play_game = gets.chomp.downcase
+        case play_game
+        when 'p'
+            start
+        else
+            puts "Hope to play soon."
+            exit
+        end
+    end
+
+    def start
+        puts "Please enter your name:"
+        player_name = gets.chomp
+        puts "Hello #{player_name}! You are playing with Battleship against the computer."
+        puts "I have placed my 2 ships on the grid."
+        puts "You need to place your two ships"
+        puts @player_board.render
+        puts "THe Cruiser is 3 spaces long and the Submarine is 2 long."
+        puts "Ships can only be placed horizontally or vertically."
+        puts "Enter the 3 squares for your Cruiser in this format A1 B1 C1."
+        @p_cruiser_coord = gets.chomp
+        @p_cruiser_arr = @p_cruiser_coord.split(" ")
+        valid?(@player_cruiser, @p_cruiser_arr)
+        @p_cruiser_arr.map!(&:upcase)
+        @player_board.place(@player_cruiser, @p_cruiser_arr)
+        puts @player_board.render(true)
+        puts "Enter the 2 squares for your Submarine in this format D2 D3."
+        @p_submarine_coord = gets.chomp
+        @p_submarine_arr = @p_submarine_coord.split(" ")
+        valid?(@player_submarine, @p_submarine_arr)
+        @p_submarine_arr.map!(&:upcase)
+        while @player_board.place(@player_submarine, @p_submarine_arr) == false
+            puts "Those are invalid coordinates.  Please try again:"
+            @p_submarine_coord = gets.chomp
+            @p_submarine_arr = @p_submarine_coord.split(" ")
+            @p_submarine_arr.map!(&:upcase)
+        end
+        puts @player_board.render(true)
+        take_turns = Turns.new
+        take_turns.computer_place_ships()
+    end
+
+    def valid?(ship, coords)
+        while @player_board.valid_placement?(@player_cruiser, @p_cruiser_arr) == false
+            puts "Those are invalid coordinates.  Please try again:"
+            @p_cruiser_coord = gets.chomp
+            @p_cruiser_arr = @p_cruiser_coord.split(" ")
+        end
+    end
+
     def game_over
-        # Display if computer won or user won
-        # Prompt to start a new game or exit
+        puts "Would you like to play again?  (y/n)?"
+        play_again = gets.chomp.downcase
+        if play_again == "y" || play_again == "Y"
+            Play.new.start
+        else
+            puts "Great game!  Hope we can play again soon."
+            exit
+        end
     end
 end

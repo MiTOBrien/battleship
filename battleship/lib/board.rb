@@ -29,7 +29,7 @@ class Board
             if @cells[coordinate].empty?
                 @cells[coordinate].place_ship(ship)
             else 
-                return  "Spot Occupied"
+                return false
             end
         end
     end
@@ -47,39 +47,39 @@ class Board
     end
 
     def render(show_ship = false)
-        if (show_ship == true) 
-         game_board = "  1 2 3 4 \nA #{@cells["A1"].render(true)} #{@cells["A2"].render(true)} #{@cells["A3"].render(true)} #{@cells["A4"].render(true)} \nB #{@cells["B1"].render(true)} #{@cells["B2"].render(true)} #{@cells["B3"].render(true)} #{@cells["B4"].render(true)} \nC #{@cells["C1"].render(true)} #{@cells["C2"].render(true)} #{@cells["C3"].render(true)} #{@cells["C4"].render(true)} \nD #{@cells["D1"].render(true)} #{@cells["D2"].render(true)} #{@cells["D3"].render(true)} #{@cells["D4"].render(true)} \n"   
+        if (show_ship == true)
+            game_board = "  1 2 3 4 \nA #{@cells["A1"].render(true)} #{@cells["A2"].render(true)} #{@cells["A3"].render(true)} #{@cells["A4"].render(true)} \nB #{@cells["B1"].render(true)} #{@cells["B2"].render(true)} #{@cells["B3"].render(true)} #{@cells["B4"].render(true)} \nC #{@cells["C1"].render(true)} #{@cells["C2"].render(true)} #{@cells["C3"].render(true)} #{@cells["C4"].render(true)} \nD #{@cells["D1"].render(true)} #{@cells["D2"].render(true)} #{@cells["D3"].render(true)} #{@cells["D4"].render(true)} \n"   
         else
-         game_board = "  1 2 3 4 \nA #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render} \nB #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render} \nC #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render} \nD #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render} \n"
+            game_board = "  1 2 3 4 \nA #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render} \nB #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render} \nC #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render} \nD #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render} \n"
         end
     end #this means if show ship is true, it renders all the cells with the ship placed argument as true, and shows cells that are not empty (have a ship in them) as "S"
 
     def valid_placement?(ship, coordinates)
-      return false unless valid_length?(ship, coordinates)
-      return false unless (consecutive_letters?(coordinates)) || (consecutive_numbers?(coordinates)) == true
-      valid_coordinate?(coordinates)
+        return false unless valid_length?(ship, coordinates)
+        return false unless (consecutive_letters?(coordinates)) || (consecutive_numbers?(coordinates)) == true
+        valid_coordinate?(coordinates)
     end
-
-    def valid_length?(ship, coordinates) 
-       coordinates.size == ship.length
+    
+    def valid_length?(ship, coordinates)
+        coordinates.size == ship.length
     end
-
+    
     def consecutive_letters?(coordinates)
         letters = coordinates.map { |coord| coord[0] }
         numbers = coordinates.map { |coord| coord[1].to_i }
-
+        
         return false unless numbers.uniq.size == 1
         #number of uniq values for the number is 1 so all numbers have to be the same if we are doing vertical
         letter_ords = letters.map { |letter| letter.ord }
         letter_ords.each_cons(2).all? { |let1, let2| let2 == let1.next }
     end
-   
+    
     def consecutive_numbers?(coordinates)
         letters = coordinates.map { |coord| coord[0] }
         numbers = coordinates.map { |coord| coord[1].to_i }
-
+        
         return false unless letters.uniq.size == 1
-
+        
         numbers.each_cons(2).all? { |num1, num2| num2 == num1.next }
     end
 end

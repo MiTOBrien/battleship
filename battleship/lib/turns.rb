@@ -1,8 +1,12 @@
 class Turns
+    attr_reader :computer_cruiser,
+                 :computer_submarine
+
+    attr_writer :computer_cruiser
+                :computer_submarine
 
     def initialize
         @computer_board = Board.new
-        @player_board = Board.new
         @computer_cruiser = Ship.new("Cruiser", 3)
         @computer_submarine = Ship.new("Submarine", 2)
         @computer_cruiser_coord = ""
@@ -11,7 +15,7 @@ class Turns
         @computer_submarine_arr = []
     end
 
-    def computer_place_ships(@computer_cruiser, @computer_submarine)
+    def computer_place_ships(computer_cruiser, computer_submarine)
         # Randomly generate coords for cruiser
         # Place cruiser
         # Randomly generate coords for submarine

@@ -44,7 +44,6 @@ RSpec.describe Board do
 
     it 'can render the board' do
         expect(@board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
-
     end
 
     it 'can place ships on the board with interactions' do
@@ -68,8 +67,6 @@ RSpec.describe Board do
         @board.cells["D4"].fire_upon
         @board.cells["B2"].fire_upon
         
-        
         expect(@board.render).to eq("  1 2 3 4 \nA M . . . \nB . H . . \nC . . . X \nD . . . X \n")
      end
-
 end

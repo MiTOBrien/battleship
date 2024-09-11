@@ -20,20 +20,29 @@ class Turns
     end
 
     def computer_turn
-        # Randomly take shot
-        # Puts "My shot on #{computer_shot} was a hit (or miss)"
+        # Randomly take shot and display result
+        puts "My shot on #{computer_shot} was a hit (or miss)"
         # Display computer board
+        @computer_board.render
         # Display player board
+        @player_board.render
         # Check if game is over (Both ships are sunk)
         # Go to game_over methor or start player_turn method
     end
 
     def player_turn
-        # Puts "Enter the coordinate for your shot"
+        # Prompt player to take a shot
+        puts "Enter the coordinate for your shot"
+        player_shot = gets.chomp
         # Validate coordinate
-        # Puts "Your shot on #{player_shot} was a hit (or miss)"
+        @player_board.valid_coordinate[player_shot]
+        @player_board.cells[player_shot].fire_upon
+        # Display result
+        puts "Your shot on #{player_shot} was a hit (or miss)"
         # Display computer board
+        @computer_board.render
         # Display plaer board
+        @player_board.render
         # Check if games is over (Both ships are sunk)
         # Go to game_over method or start computer_turn method
     end

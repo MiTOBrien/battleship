@@ -22,16 +22,31 @@ class Play
         puts "Enter the 3 squares for your Cruiser in this format A1 B1 C1."
         @p_cruiser_coord = gets.chomp
         @p_cruiser_arr = @p_cruiser_coord.split(" ")
-        @player_board.valid_placement?(@player_cruiser,@p_cruiser_arr)
+        while @player_board.valid_placement?(@player_cruiser, @p_cruiser_arr) == false
+            puts "Those are invalid coordinates.  Please try again:"
+            @p_cruiser_coord = gets.chomp
+            @p_cruiser_arr = @p_cruiser_coord.split(" ")
+        end
         @p_cruiser_arr.map!(&:upcase)
         @player_board.place(@player_cruiser, @p_cruiser_arr)
         puts @player_board.render(true)
         puts "Enter the 2 squares for your Submarine in this format D2 D3."
         @p_submarine_coord = gets.chomp
         @p_submarine_arr = @p_submarine_coord.split(" ")
-        @player_board.valid_placement?(@player_submarine, @p_submarine_arr)
+        while @player_board.valid_placement?(@player_submarine, @p_submarine_arr) == false
+            puts "Those are invalid coordinates.  Please try again:"
+            @p_submarine_coord = gets.chomp
+            @p_submarine_arr = @p_submarine_coord.split(" ")
+        end
         @p_submarine_arr.map!(&:upcase)
-        @player_board.place(@player_submarine, @p_submarine_arr)
+        while @player_board.place(@player_submarine, @p_submarine_arr) == false
+            puts "Those are invalid coordinates.  Please try again:"
+            @p_submarine_coord = gets.chomp
+            @p_submarine_arr = @p_submarine_coord.split(" ")
+            @p_submarine_arr.map!(&:upcase)
+        end
         puts @player_board.render(true)
+        take_turns = Turns.new
+        take_turns.computer_place_ships
     end
 end

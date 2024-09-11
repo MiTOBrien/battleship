@@ -54,7 +54,7 @@ RSpec.describe Board do
 
         expect(@board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
        
-        expect(@board.place(@submarine, ["A1", "B1"])).to eq "Spot Occupied"
+        expect(@board.place(@submarine, ["A1", "B1"])).to eq false
     end
 
 

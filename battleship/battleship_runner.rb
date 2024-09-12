@@ -1,6 +1,5 @@
 require './spec/spec_helper'
 
-board = Board.new
-play = Play.new
+start = Turns.new
 
-play_battleship = play.ask_user_to_play
+play_battleship = start.ask_user_to_play

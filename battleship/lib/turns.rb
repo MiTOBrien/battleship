@@ -60,7 +60,16 @@ class Turns
 
     def computer_turn
         # Randomly take shot and display result
+       I3_board_render
         # puts "My shot on #{computer_shot} was a hit (or miss)"
+
+        cords = ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'B4', 'C1', 'C2', 'C3', 'C4', 'D1', 'D2', 'D3', 'D4']
+
+        computer_shot = cords.sample 
+        @computer_board.cells[computer_shot].fire upon
+        
+        puts "My shot on #{computer_shot} was a #{@computer_board.cells[computer_shot].render}"
+
         # Display computer board
         puts "==========COMPUTER BOARD=========="
         puts @computer_board.render
@@ -68,9 +77,13 @@ class Turns
         puts "==========PLAYER BOARD=========="
         puts @player_board.render(true)
         # Check if game is over (Both ships are sunk)
-        # Go to game_over methor or start player_turn method
+        if game_over? == true
+            game_over
+        else 
+            player_turn        # Go to game_over methor or start player_turn method
+    
+        end
     end
-
     def player_turn
         # Prompt player to take a shot
         puts "Enter the coordinate for your shot"
@@ -90,6 +103,7 @@ class Turns
         # Go to game_over method or start computer_turn method
     end
 
+   I3_board_render
     def ships_sunk?
         # check if ships are sunk to end game?
     end
@@ -156,5 +170,10 @@ class Turns
             puts "Great game!  Hope we can play again soon."
             exit
         end
+
+    def game_over?
+        # Display if computer won or user won
+        # Prompt to start a new game or exit
+
     end
 end
